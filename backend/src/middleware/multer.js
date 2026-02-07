@@ -1,7 +1,7 @@
 import multer from "multer";
 import path from "path";
 
-const storage = multer.diskStorage({
+const storage = multer.memoryStorage({
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },

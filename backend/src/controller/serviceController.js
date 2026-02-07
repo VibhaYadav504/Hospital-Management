@@ -38,7 +38,7 @@ export const createService = async (req, res) => {
     let imageData = {};
 
     if (req.file) {
-      const uploadResult = await uploadToCloudinary(req.file.path);
+      const uploadResult = await uploadToCloudinary(req.file.buffer);
       imageData = {
         imageUrl: uploadResult.secure_url,
         imagePublicId: uploadResult.public_id,
