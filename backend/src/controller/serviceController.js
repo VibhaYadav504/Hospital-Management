@@ -33,7 +33,6 @@ export const getServiceById = async (req, res) => {
   }
 };
 
-/* CREATE SERVICE (WITH IMAGE UPLOAD) */
 export const createService = async (req, res) => {
   try {
     let imageData = {};
@@ -58,7 +57,6 @@ export const createService = async (req, res) => {
   }
 };
 
-/* UPDATE SERVICE */
 export const updateService = async (req, res) => {
   try {
     const { id } = req.params;
@@ -91,7 +89,7 @@ export const updateService = async (req, res) => {
   }
 };
 
-/* SOFT DELETE SERVICE */
+
 export const deleteService = async (req, res) => {
   try {
     const { id } = req.params;

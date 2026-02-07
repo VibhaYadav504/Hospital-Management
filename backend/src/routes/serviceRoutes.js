@@ -12,9 +12,7 @@ import { upload } from "../middleware/multer.js";
 const router = express.Router();
 router.get("/get", getServices);
 router.get("/:id", getServiceById);
-router.post("/", upload.single("image"), createService);
-
-
+router.post("/add", upload.single("image"), createService);
 router.put("/:id", updateService);
 router.delete("/:id", deleteService);
 

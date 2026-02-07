@@ -47,6 +47,7 @@ const ServiceTable = () => {
         <thead className="bg-gray-100">
           <tr>
             {[
+              "Image",
               "Name",
               "Department",
               "Price",
@@ -74,6 +75,19 @@ const ServiceTable = () => {
 
           {services.map((s) => (
             <tr key={s._id} className="border-b hover:bg-gray-50">
+               <td className="px-4 py-2">
+                {s.imageUrl ? (
+                  <img
+                    src={s.imageUrl}
+                    alt={s.name}
+                    className="w-12 h-12 object-cover rounded"
+                  />
+                ) : (
+                  <div className="w-12 h-12 bg-gray-200 flex items-center justify-center rounded text-gray-400 text-xs">
+                    No Image
+                  </div>
+                )}
+              </td>
               <td className="px-4 py-2">{s.name}</td>
               <td className="px-4 py-2">{s.department}</td>
               <td className="px-4 py-2">${s.price}</td>

@@ -71,7 +71,7 @@ const EditService = () => {
                 onChange={handleChange}
                 className="w-full border border-gray-300 rounded-md p-2"
                 placeholder={field === "duration" ? "e.g., 30 minutes" : ""}
-                required={field !== "duration" && field !== "image"}
+                required={field !== "duration" && field !== "imageUrl"}
               />
             )}
           </div>

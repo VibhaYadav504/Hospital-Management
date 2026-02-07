@@ -15,7 +15,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 app.use("/api/doctor", doctorRoutes);
-app.use("/api/services", serviceRoutes);
+app.use("/api/service", serviceRoutes);
 app.use("/api/appointment", appointmentRoutes)
 app.get("/test", (req, res) => {
   res.send("API is running");

@@ -8,12 +8,13 @@ import {
   updateDoctor,
   deleteDoctor,
 } from "../controller/doctorController.js";
+import { upload } from "../middleware/multer.js";
 
 const router = express.Router();
 
 router.get("/get", getDoctors);
 router.get("/:id", getDoctorById);
-router.post("/add", createDoctor);
+router.post("/add", upload.single("image"), createDoctor);
 router.put("/:id", updateDoctor);
 router.delete("/:id", deleteDoctor);
 

@@ -7,10 +7,16 @@ export const getServices = async () => {
   return response.data;
 };
 
-export const createService = async (payload) => {
-  const response = await axios.post(`${API_URL}/add`, payload);
+export const createService = async (formData) => {
+  const response = await axios.post(`${API_URL}/add`, formData,    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
   return response.data;
 };
+
 
 export const getServiceById = async (id) => {
   const response = await axios.get(`${API_URL}/${id}`);
