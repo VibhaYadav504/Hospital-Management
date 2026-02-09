@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaLinkedin, FaTwitter, FaStar } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
 // Import local doctor images
 import D1 from "../../../assets/d1.jpg";
 import D2 from "../../../assets/d2.jpg";
@@ -150,7 +150,11 @@ const Doctor = () => {
                   </a>
                 </div>
 
-                <button className="self-start px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                <button 
+ onClick={() =>
+    navigate("/book-appointment", { state: { doctor: doctor.name } })
+  }
+                className="self-start px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
                   Book Appointment
                 </button>
               </div>

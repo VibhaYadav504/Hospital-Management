@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createAppointment } from "../../../services/admin/appointmentService";
-
+import { useLocation } from "react-router-dom";
 
 // Example list of doctors
 const doctors = [
@@ -24,7 +24,8 @@ const BookAppointment = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-
+const location = useLocation();
+const selectedDoctor = location.state?.doctor || ""; 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -59,7 +60,7 @@ const BookAppointment = () => {
         fullName: "",
         mobile: "",
         email: "",
-        doctor: "",
+       doctor: selectedDoctor, 
         date: "",
         time: "",
         problem: "",

@@ -68,7 +68,7 @@ export const updateService = async (req, res) => {
     let updateData = { ...req.body };
 
     if (req.file) {
-      const uploadResult = await uploadToCloudinary(req.file.path);
+      const uploadResult = await uploadToCloudinary(req.file.buffer);
       updateData.imageUrl = uploadResult.secure_url;
       updateData.imagePublicId = uploadResult.public_id;
     }

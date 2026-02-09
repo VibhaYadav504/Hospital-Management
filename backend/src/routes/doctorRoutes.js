@@ -12,10 +12,10 @@ import { upload } from "../middleware/multer.js";
 
 const router = express.Router();
 
-router.get("/get", getDoctors);
+router.get("/", getDoctors);
 router.get("/:id", getDoctorById);
-router.post("/add", upload.single("image"), createDoctor);
-router.put("/:id", updateDoctor);
+router.post("/", upload.single("photo"), createDoctor);
+router.put("/:id", upload.single("photo"), updateDoctor);
 router.delete("/:id", deleteDoctor);
 
 export default router;

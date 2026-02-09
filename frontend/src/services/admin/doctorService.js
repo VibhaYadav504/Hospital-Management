@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL = "http://localhost:5000/api/doctor";
 
 export const getDoctors = async () => {
-  const response = await axios.get(`${API_URL}/get`);
+  const response = await axios.get(`${API_URL}/`);
   return response.data;
 };
 
@@ -11,7 +11,7 @@ export const createDoctor = async (payload) => {
    Object.keys(payload).forEach(key => {
     console.log(`${key}:`, payload[key]);
   });
-  const response = await axios.post(`${API_URL}/add`, payload);
+  const response = await axios.post(`${API_URL}/`, payload);
   return response.data;
 };
 

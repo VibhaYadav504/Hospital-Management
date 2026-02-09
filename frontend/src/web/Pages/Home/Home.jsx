@@ -11,7 +11,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import doctor from "../../../assets/doctor.webp";
+
 import web1 from "../../../assets/web1.jpg";
 import web2 from "../../../assets/web2.jpg";
 import web3 from "../../../assets/web3.jpg";
@@ -25,7 +25,7 @@ import orthodontist from "../../../assets/orthodontist.jpg";
 import doctor4 from "../../../assets/doctor4.jpg";
 import doctor2 from "../../../assets/doctor2.jpg";
 import doctor3 from "../../../assets/doctor3.jpg";
-
+import { useNavigate } from "react-router-dom";
 
 // Feature Card Component
 const FeatureCard = ({ title, description, color }) => {
@@ -94,6 +94,7 @@ const testimonialSettings = {
 
 
 const HomePage = () => {
+    const navigate = useNavigate();
    const typedRef = useRef(null);
    
    // Hero background images
@@ -260,7 +261,8 @@ const HomePage = () => {
             <p className="text-blue-500 font-medium">{doctor.specialty}</p>
 
             {/* Book Appointment Button */}
-            <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full font-semibold transition">
+            <button onClick={() => navigate("/book-appointment")}
+            className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full font-semibold transition">
               Book Appointment
             </button>
           </div>

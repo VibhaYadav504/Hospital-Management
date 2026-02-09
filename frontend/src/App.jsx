@@ -18,6 +18,7 @@ import AddDoctor from './admin/Doctor/components/AddDoctor'
 import EditDoctor from './admin/Doctor/components/EditDoctor'
 import EditAppointment from './admin/Appointment/components/EditAppointment'
 import AddAppointment from './admin/Appointment/components/AddAppointment'
+import Login from './admin/login/login'
 function App() {
   return (
     <>
@@ -27,14 +28,15 @@ function App() {
         <Route path='/' element={<WebLayout><HomePage /> </WebLayout>} />
         <Route path='/doctors' element={<WebLayout><Doctor /></WebLayout>} />
         <Route path='/about' element={<WebLayout><About /></WebLayout>} />
-        <Route path='/bookappointment' element={<WebLayout><BookAppointment /></WebLayout>} />
+        <Route path='/book-appointment' element={<WebLayout><BookAppointment /></WebLayout>} />
         <Route path='/contact' element={<WebLayout><Contact /></WebLayout>} />
         <Route path='/services' element={<WebLayout><Service /></WebLayout>} />
+       
 
 
 
         {/* Admin */}
-
+          <Route path='/login' element={<Login/>}/>
         <Route path='/admin/dashboard' element={<AdminLayout><Dashboard /></AdminLayout>} />
         <Route path='/admin/doctors' element={<AdminLayout><AdminDoctor /></AdminLayout>} />
         <Route path='/admin/doctors/add' element={<AdminLayout><AddDoctor /></AdminLayout>} />

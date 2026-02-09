@@ -41,35 +41,30 @@ const AddDoctor = () => {
   };
 
   const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    
-    e.preventDefault();
-    
-    const formData = new FormData();
-    formData.append("name", e.name);
-    formData.append("department", e.department);
-    formData.append("experience", e.experience);
-    formData.append("rating", e.rating);
-    formData.append("description", e.description);
-    formData.append("photo", e.photo);
-    // formData.append("socialLinks[linkedin]", e.socialLinks.linkedin);
-    // formData.append("socialLinks[twitter]", e.socialLinks.twitter);
+  const formData = new FormData();
+  formData.append("name", doctor.name);
+  formData.append("department", doctor.department);
+  formData.append("experience", doctor.experience);
+  formData.append("rating", doctor.rating);
+  formData.append("description", doctor.description);
+  formData.append("photo", doctor.photo); 
+  formData.append("socialLinks[linkedin]", doctor.socialLinks.linkedin);
+  formData.append("socialLinks[twitter]", doctor.socialLinks.twitter);
 
-    Object.keys(formData).forEach(key => {
-    console.log(`${key}:`, formData[key]);
-  });
+  try {
+    setLoading(true);
+    await createDoctor(formData);
+    message.success("Doctor added successfully");
+    navigate("/admin/doctors");
+  } catch (error) {
+    message.error("Failed to add doctor");
+  } finally {
+    setLoading(false);
+  }
+};
 
-    try {
-      setLoading(true);
-      await createDoctor(formData);
-      message.success("Doctor added successfully");
-      navigate("/admin/doctors");
-    } catch (error) {
-      message.error("Failed to add doctor");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="max-w-xl mx-auto bg-white p-6 shadow rounded">

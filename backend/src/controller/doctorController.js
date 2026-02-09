@@ -1,7 +1,7 @@
 import Doctor from "../models/doctor.js";
 import mongoose from "mongoose";
 import { uploadToCloudinary } from "../config/cloudinary.js";
-// GET all doctors
+
 export const getDoctors = async (req, res) => {
   try {
     const doctors = await Doctor.find();
@@ -11,7 +11,7 @@ export const getDoctors = async (req, res) => {
   }
 };
 
-// GET doctor by ID
+
 export const getDoctorById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -29,31 +29,34 @@ export const getDoctorById = async (req, res) => {
   }
 };
 
-// CREATE doctor
+
 export const createDoctor = async (req, res) => {
   try {
-
-    console.log("-------------------------------------------")
-    console.log(req)
-    let {
+    const {
       name,
       department,
       experience,
       rating,
       description,
-      photo,
       socialLinks,
     } = req.body;
 
-    console.log(name)
+    if (!req.file) {
+      return res.status(400).json({ error: "Doctor photo is required" });
+    }
+
+    
+    const uploadResult = await uploadToCloudinary(req.file.buffer, {
+      folder: "doctors",
+    });
 
     const doctor = new Doctor({
       name,
       department,
       experience,
-      rating,
+      rating: rating ? Number(rating) : 0,
       description,
-      photo,
+      photo: uploadResult.secure_url,
       socialLinks: {
         linkedin: socialLinks?.linkedin || "",
         twitter: socialLinks?.twitter || "",
@@ -62,10 +65,13 @@ export const createDoctor = async (req, res) => {
 
     const savedDoctor = await doctor.save();
     res.status(201).json(savedDoctor);
+
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
+
+
 
 // UPDATE doctor
 export const updateDoctor = async (req, res) => {
@@ -82,36 +88,44 @@ export const updateDoctor = async (req, res) => {
       experience,
       rating,
       description,
-      photo,
       socialLinks,
     } = req.body;
 
+    let updateData = {
+      name,
+      department,
+      experience,
+      rating: rating ? Number(rating) : 0,
+      description,
+      socialLinks: {
+        linkedin: socialLinks?.linkedin || "",
+        twitter: socialLinks?.twitter || "",
+      },
+    };
+
+    if (req.file) {
+      const uploadResult = await uploadToCloudinary(req.file.buffer, {
+        folder: "doctors",
+      });
+      updateData.photo = uploadResult.secure_url;
+    }
+
     const updatedDoctor = await Doctor.findByIdAndUpdate(
       id,
-      {
-        name,
-        department,
-        experience,
-        rating,
-        description,
-        photo,
-        socialLinks: {
-          linkedin: socialLinks?.linkedin || "",
-          twitter: socialLinks?.twitter || "",
-        },
-      },
+      updateData,
       { new: true, runValidators: true }
     );
 
-    if (!updatedDoctor)
+    if (!updatedDoctor) {
       return res.status(404).json({ error: "Doctor not found" });
+    }
 
     res.status(200).json(updatedDoctor);
+
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 };
-
 // DELETE doctor
 export const deleteDoctor = async (req, res) => {
   try {
