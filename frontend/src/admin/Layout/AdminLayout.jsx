@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./header";
-import Sidebar from "./Sidebar";
-import Footer from "./footer";
+import Header from "./Header.jsx";
+import Sidebar from "./Sidebar.jsx";
+import Footer from "./Footer.jsx";
 
 const AdminLayout = ({ children }) => {
   return (
