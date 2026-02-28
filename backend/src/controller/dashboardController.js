@@ -1,4 +1,4 @@
-import Dashboard from "../models/Dashboard.js";
+import Dashboard from "../models/dashboard.js";
 export const getDashboardStats=async (req,res)=>{
     try{
         let stats= await Dashboard.findOne();
