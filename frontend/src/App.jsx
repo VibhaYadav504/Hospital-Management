@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import HomePage from './web/Pages/Home/Home'
 import WebLayout from './web/Layout/WebLayout'
 import AdminLayout from './admin/Layout/AdminLayout'
-import Dashboard from './admin/Dashboard/Dashboard.js'
+import Dashboard from './admin/Dashboard/Dashboard.jsx'
 import Doctor from './web/Pages/Doctors/Doctor'
 import BookAppointment from './web/Pages/Blogs/BookAppointment'
 import Contact from "./web/Pages/Contact/Contact";
